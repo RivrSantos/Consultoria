@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Gratuito: Manutenção Preventiva para Yamaha - Dr. Yamaha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            /* slate-900 */
+            --card-bg: #1e293b;
+            /* slate-800 */
+            --border-color: #334155;
+            /* slate-700 */
+            --text-primary: #f1f5f9;
+            /* slate-100 */
+            --text-secondary: #94a3b8;
+            /* slate-400 */
+            --accent-color: #22d3ee;
+            /* cyan-400 */
+            --accent-hover: #06b6d4;
+            /* cyan-500 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 6rem;
+            /* Espaço para a nav fixa */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+        }
+
+        .layout-wrapper {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            }
+
+        .course-nav {
+            width: 220px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1rem;
+            position: sticky;
+            top: 1rem;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+
+        .course-nav ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            list-style: none;
+            }
+
+        .course-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            }
+
+        .course-nav a:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            }
+
+        .course-container {
+            flex: 1;
+            }
+
+        .course-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border: none;
+            cursor: pointer;
+            }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            }
+
+        .slide {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            margin-bottom: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .slide-header {
+            background-color: #27364d;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .slide-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .slide-icon {
+            color: var(--accent-color);
+        }
+
+        .slide-content {
+            padding: 2rem;
+        }
+
+        .slide-content h3 {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .slide-content p,
+        .slide-content li {
+            color: var(--text-secondary);
+        }
+
+        .slide-content ul {
+            list-style-position: inside;
+            padding-left: 0.5rem;
+        }
+
+        .slide-content li+li {
+            margin-top: 0.5rem;
+        }
+
+        /* Evaluation Section */
+        #avaliacao .slide-content {
+            padding: 2rem;
+        }
+
+        .quiz-question {
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-question p {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .quiz-options label {
+            display: block;
+            background-color: #27364d;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .quiz-options label:hover {
+            background-color: #334155;
+        }
+
+        .quiz-options input[type="radio"] {
+            display: none;
+        }
+
+        /* Feedback styles */
+        .quiz-options label.correct {
+            background-color: rgba(34, 197, 94, 0.2);
+            border-color: #22c55e;
+            color: var(--text-primary);
+        }
+
+        .quiz-options label.incorrect {
+            background-color: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: var(--text-primary);
+        }
+
+        #quiz-results {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: none;
+            /* Hidden by default */
+            transition: all 0.3s ease;
+        }
+
+        .course-footer {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+        .layout-wrapper {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    </style>
+</head>
+
+<body>
+    <di class="layout-wrapper">
+        <nav class="course-nav">
+            <ul>
+                <li><a href="index.html">Pagina Inicial</a></li>
+                <li><a href="#oleo">1. Óleo</a></li>
+                <li><a href="#pneus">2. Pneus</a></li>
+                <li><a href="#relacao">3. Relação</a></li>
+                <li><a href="#freios">4. Freios</a></li>
+                <li><a href="#luzes">5. Luzes</a></li>
+                <li><a href="#cabos">6. Cabos</a></li>
+                <li><a href="#avaliacao">Avaliação</a></li>
+            </ul>
+        </nav>
+    
+
+    <div class="course-container">
+        <header class="course-header">
+            <h1>Curso Prático de Manutenção Preventiva</h1>
+            <p>Aprenda o essencial para cuidar da sua Yamaha (150-250cc) e rode com mais segurança e economia.</p>
+        </header>
+
+        <main>
+            <!-- Slide 1: Óleo -->
+            <section id="oleo" class="slide">
+                <div class="slide-header">
+                    <div class="slide-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3h4v12h-4z"></path><path d="M10 15h4"></path><path d="M7 15h10v4H7z"></path><path d="m14 15-1-3-1 3"></path></svg></div>
+                    <h2>Passo 1: Verificação do Óleo</h2>
+                </div>
+                <div class="slide-content">
+                    <p><strong>Por que é importante?</strong> O óleo é o sangue do motor. Nível baixo ou óleo velho causam desgaste, superaquecimento e podem fundir o motor.</p>
+                    <h3>Como Fazer (a cada 500km):</h3>
+                    <ul>
+                        <li>Aqueça o motor por 3-5 minutos e desligue.</li>
+                        <li>Com a moto reta em local plano, remova a vareta de óleo.</li>
+                        <li>Limpe a vareta, insira novamente SEM rosqueá-la e retire.</li>
+                        <li>O nível deve estar entre as marcas de MÍNIMO e MÁXIMO. Complete se necessário.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 2: Pneus -->
+            <section id="pneus" class="slide">
+                <div class="slide-header">
+                    <div class="slide-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 12v-2"></path><path d="M12 18h.01"></path></svg></div>
+                    <h2>Passo 2: Calibragem dos Pneus</h2>
+                </div>
+                <div class="slide-content">
+                    <p><strong>Por que é importante?</strong> A pressão correta garante estabilidade, segurança nas curvas, frenagem eficiente e evita o desgaste irregular dos pneus.</p>
+                    <h3>Como Fazer (semanalmente):</h3>
+                    <ul>
+                        <li>Com os pneus frios, vá a um posto de combustível.</li>
+                        <li>Consulte a pressão recomendada (geralmente em um adesivo na balança da moto).</li>
+                        <li>Calibre tanto o pneu dianteiro quanto o traseiro.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 3: Relação -->
+            <section id="relacao" class="slide">
+                <div class="slide-header">
+                    <div class="slide-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="5.5" r="3.5"></circle><circle cx="18.5" cy="18.5" r="3.5"></circle><line x1="8" y1="8" x2="16" y2="16"></line></svg></div>
+                    <h2>Passo 3: Limpeza e Lubrificação da Relação</h2>
+                </div>
+                <div class="slide-content">
+                    <p><strong>Por que é importante?</strong> Uma corrente suja e seca desgasta rapidamente o kit (corrente, coroa e pinhão), causa ruídos e pode até quebrar, travando a roda.</p>
+                    <h3>Como Fazer (a cada 500km ou após chuva):</h3>
+                    <ul>
+                        <li>Com a moto no cavalete central, use um desengraxante (ou querosene) e uma escova para remover a sujeira da corrente.</li>
+                        <li>Seque bem a corrente com um pano limpo.</li>
+                        <li>Aplique um lubrificante específico para correntes de moto em toda a sua extensão, girando a roda lentamente.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 4: Freios -->
+            <section id="freios" class="slide">
+                <div class="slide-header">
+                    <div class="slide-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"></path><path d="M12 8v4l2 2"></path></svg></div>
+                    <h2>Passo 4: Inspeção dos Freios</h2>
+                </div>
+                <div class="slide-content">
+                    <p><strong>Por que é importante?</strong> É o seu principal item de segurança. Níveis baixos de fluido ou pastilhas gastas podem causar falha total na frenagem.</p>
+                    <h3>Como Fazer (quinzenalmente):</h3>
+                    <ul>
+                        <li>Verifique o nível do fluido de freio nos reservatórios (dianteiro e traseiro). Ele deve estar acima da marca "LOWER" ou "MIN".</li>
+                        <li>Inspecione visualmente a espessura das pastilhas de freio. Se estiverem muito finas, é hora de trocar.</li>
+                        <li>Verifique se os manetes e pedais não estão muito "borrachudos" ou baixos.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 5: Luzes e Buzina -->
+            <section id="luzes" class="slide">
+                <div class="slide-header">
+                    <div class="slide-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.09 14.32a1 1 0 0 1-1.41 1.41l-2.13-2.12a1 1 0 0 1 0-1.41l2.12-2.12a1 1 0 0 1 1.41 1.41L13.66 12l1.43 1.32z"></path><path d="M9 12a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-1z"></path><path d="M3.34 19a10 10 0 1 1 14.14-14.14 1 1 0 0 1-1.41 1.41 8 8 0 1 0-11.32 11.32 1 1 0 0 1 1.41 1.41z"></path></svg></div>
+                    <h2>Passo 5: Inspeção de Luzes e Buzina</h2>
+                </div>
+                <div class="slide-content">
+                    <p><strong>Por que é importante?</strong> Ver e ser visto é fundamental. Luzes e buzina são suas ferramentas de comunicação e segurança no trânsito.</p>
+                    <h3>Como Fazer (semanalmente):</h3>
+                    <ul>
+                        <li>Ligue a moto e verifique o farol (baixo e alto).</li>
+                        <li>Acione as setas (dianteiras e traseiras, de ambos os lados).</li>
+                        <li>Pressione os manetes de freio (dianteiro e traseiro) para checar a luz de freio.</li>
+                        <li>Teste a buzina.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 6: Cabos e Controles -->
+            <section id="cabos" class="slide">
+                <div class="slide-header">
+                    <div class="slide-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 0 2l-.15.08a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1 0-2l.15-.08a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+                    <h2>Passo 6: Verificação de Cabos e Controles</h2>
+                </div>
+                <div class="slide-content">
+                    <p><strong>Por que é importante?</strong> Cabos presos ou com folga excessiva podem comprometer a aceleração e a embreagem, afetando o controle da moto.</p>
+                    <h3>Como Fazer (quinzenalmente):</h3>
+                    <ul>
+                        <li>Verifique a folga do acelerador. Deve haver um pequeno jogo livre antes de acelerar.</li>
+                        <li>Confira o cabo da embreagem. O manete também deve ter uma pequena folga.</li>
+                        <li>Gire o guidão para ambos os lados e veja se a aceleração não aumenta sozinha.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Evaluation -->
+            <section id="avaliacao" class="slide">
+                <div class="slide-header">
+                    <div class="slide-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                    <h2>Avalie seu Conhecimento</h2>
+                </div>
+                <div class="slide-content">
+                    <form id="quiz-form">
+                        <!-- Question 1 -->
+                        <div class="quiz-question">
+                            <p>1. Qual é a frequência recomendada para verificar o nível do óleo do motor?</p>
+                            <div class="quiz-options" data-correct="a">
+                                <label><input type="radio" name="q1" value="a"> a) A cada 500km</label>
+                                <label><input type="radio" name="q1" value="b"> b) A cada 5000km</label>
+                                <label><input type="radio" name="q1" value="c"> c) Apenas nas revisões</label>
+                            </div>
+                        </div>
+                        <!-- Question 2 -->
+                        <div class="quiz-question">
+                            <p>2. Por que é importante calibrar os pneus com eles frios?</p>
+                            <div class="quiz-options" data-correct="b">
+                                <label><input type="radio" name="q2" value="a"> a) Porque a borracha está mais macia.</label>
+                                <label><input type="radio" name="q2" value="b"> b) Porque o ar quente se expande, alterando a leitura da pressão.</label>
+                                <label><input type="radio" name="q2" value="c"> c) Não faz diferença calibrar quente ou frio.</label>
+                            </div>
+                        </div>
+                        <!-- Question 3 -->
+                        <div class="quiz-question">
+                            <p>3. O que pode acontecer se a corrente da relação estiver muito frouxa?</p>
+                            <div class="quiz-options" data-correct="c">
+                                <label><input type="radio" name="q3" value="a"> a) A moto ficará mais silenciosa.</label>
+                                <label><input type="radio" name="q3" value="b"> b) O pneu traseiro se desgastará mais rápido.</label>
+                                <label><input type="radio" name="q3" value="c"> c) Pode escapar e travar a roda, causando um acidente.</label>
+                            </div>
+                        </div>
+                        <button type="button" id="check-answers-btn" class="btn" style="width: 100%; margin-top: 1rem;">Verificar Respostas</button>
+                        <div id="quiz-results"></div>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <footer class="course-footer">
+            <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Parabéns! Com estes passos simples, você já está cuidando muito melhor da sua moto. Para dúvidas, agende uma consultoria!</p>
+            <a href="index.html" class="btn">Home</a>
+        </footer>
+    </div>
+    </div>
+</body>
+    <script>
+        document.getElementById('check-answers-btn').addEventListener('click', function() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let score = 0;
+            const totalQuestions = questions.length;
+
+            questions.forEach((question, index) => {
+                const optionsContainer = question.querySelector('.quiz-options');
+                const correctAnswer = optionsContainer.dataset.correct;
+                const selectedOption = question.querySelector(`input[name="q${index + 1}"]:checked`);
+
+                // Reset styles
+                optionsContainer.querySelectorAll('label').forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                });
+
+                if (selectedOption) {
+                    const userAnswer = selectedOption.value;
+                    const selectedLabel = selectedOption.parentElement;
+
+                    if (userAnswer === correctAnswer) {
+                        selectedLabel.classList.add('correct');
+                        score++;
+                    } else {
+                        selectedLabel.classList.add('incorrect');
+                        // Highlight the correct answer as well
+                        const correctLabel = optionsContainer.querySelector(`input[value="${correctAnswer}"]`).parentElement;
+                        correctLabel.classList.add('correct');
+                    }
+                } else {
+                    // If no answer is selected, just highlight the correct one
+                    const correctLabel = optionsContainer.querySelector(`input[value="${correctAnswer}"]`).parentElement;
+                    correctLabel.classList.add('correct');
+                }
+            });
+
+            const resultsDiv = document.getElementById('quiz-results');
+            resultsDiv.innerHTML = `Você acertou ${score} de ${totalQuestions} perguntas!`;
+            resultsDiv.style.display = 'block';
+
+            // Change result color based on score
+            if (score === totalQuestions) {
+                resultsDiv.style.backgroundColor = 'rgba(34, 197, 94, 0.2)';
+                resultsDiv.style.color = '#22c55e';
+            } else if (score > 0) {
+                resultsDiv.style.backgroundColor = 'rgba(250, 204, 21, 0.2)';
+                resultsDiv.style.color = '#facc15';
+            } else {
+                resultsDiv.style.backgroundColor = 'rgba(239, 68, 68, 0document.getElementById('check-answers-btn').addEventListener('click', function() {
+                    const questions = document.querySelectorAll('.quiz-question');
+                    let score = 0;
+                    const totalQuestions = questions.length;
+                
+                    questions.forEach((question, index) => {
+                        const optionsContainer = question.querySelector('.quiz-options');
+                        const correctAnswer = optionsContainer.dataset.correct;
+                        const selectedOption = question.querySelector(`input[name="q${index + 1}"]:checked`);
+                
+                        // Reseta os estilos antes de verificar novamente
+                        optionsContainer.querySelectorAll('label').forEach(label => {
+                            label.classList.remove('correct', 'incorrect');
+                        });
+                
+                        if (selectedOption) {
+                            const userAnswer = selectedOption.value;
+                            const selectedLabel = selectedOption.parentElement;
+                
+                            if (userAnswer === correctAnswer) {
+                                selectedLabel.classList.add('correct');
+                                score++;
+                            } else {
+                                selectedLabel.classList.add('incorrect');
+                                // Destaca a resposta correta caso o usuário erre
+                                const correctLabel = optionsContainer.querySelector(`input[value=""]`).parentElement;
+                                correctLabel.classList.add('correct');
+                            }
+                        } else {
+                            // Se nenhuma resposta for selecionada, apenas destaca a correta
+                            const correctLabel = optionsContainer.querySelector(`input[value=""]`).parentElement;
+                            correctLabel.classList.add('correct');
+                        }
+                    });
+                
+                    const resultsDiv = document.getElementById('quiz-results');
+                    resultsDiv.innerHTML = `Você acertou  de  perguntas!`;
+                    resultsDiv.style.display = 'block';
+                
+                    // Muda a cor do resultado com base na pontuação
+                    if (score === totalQuestions) {
+                        resultsDiv.style.backgroundColor = 'rgba(34, 197, 94, 0.2)';
+                        resultsDiv.style.color = '#22c55e'; // Verde
+                    } else if (score > 0) {
+                        resultsDiv.style.backgroundColor = 'rgba(250, 204, 21, 0.2)';
+                        resultsDiv.style.color = '#facc15'; // Amarelo
+                    } else {
+                        resultsDiv.style.backgroundColor = 'rgba(239, 68, 68, 0.2)';
+                        resultsDiv.style.color = '#ef4444'; // Vermelho
+                    }
+                };
+                .2;
+                resultsDiv.style.color = '#ef4444';})
+    </script>
+</body>
+
+
+</html>

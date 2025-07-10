@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dr. Yamaha | Consultoria Humanizada e Curso Gratuito</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            /* slate-900 */
+            --card-bg: #1e293b;
+            /* slate-800 */
+            --border-color: #334155;
+            /* slate-700 */
+            --text-primary: #f1f5f9;
+            /* slate-100 */
+            --text-secondary: #94a3b8;
+            /* slate-400 */
+            --accent-color: #22d3ee;
+            /* cyan-400 */
+            --accent-hover: #06b6d4;
+            /* cyan-500 */
+            --green-color: #22c55e;
+            /* green-500 */
+            --green-hover: #16a34a;
+            /* green-600 */
+            --error-color: #ef4444;
+            /* red-500 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            border-color: #0f172a;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Header */
+        .header {
+            padding-top: 8rem; /* Espaço para o conteúdo não ficar atrás da nav transparente */
+            padding-bottom: 4rem;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, var(--bg-color) 100%);
+        }
+        
+        .profile-image {
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 0 20px var(--accent-color);
+            object-fit: cover;
+            margin: 0 auto 1.5rem auto;
+            display: block;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation Bar */
+        #main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #main-nav.scrolled {
+            background-color: black;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(11, 11, 11, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        .btn-whatsapp {
+            background-color: var(--green-color);
+            color: rgb(239, 239, 8);
+            border: #0f172a;
+            border-radius: 1px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: var(--green-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Grid Sections */
+        .grid-section {
+            display: grid;
+            gap: 1.5rem;
+            padding: 4rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .grid-section {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-icon {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+        }
+
+        /* Form Section */
+        .form-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .form-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.3);
+        }
+
+        #form-status {
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 600;
+            padding: 0.75rem;
+            border-radius: 8px;
+            display: none;
+            /* Oculto por padrão */
+        }
+
+        #form-status.success {
+            background-color: rgba(34, 197, 94, 0.2);
+            color: var(--green-color);
+            display: block;
+        }
+
+        #form-status.error {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: var(--error-color);
+            display: block;
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .testimonial-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .testimonial-card p:first-of-type {
+            font-style: italic;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card p:last-of-type {
+            /* O seletor :last-child não funcionaria com a imagem, usamos :last-of-type */
+            margin-top: 0;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: black;
+            border: 1px solid;
+            border-color: black;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* About Me Section */
+        .about-section {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            padding: 4rem 0;
+            animation: fadeInUp 0.6s 0.2s ease-out backwards;
+        }
+
+        .about-image {
+            flex-shrink: 0;
+        }
+
+        .profile-image-large {
+            width: 250px;
+            height: 250px;
+            border-radius: 16px;
+            border: 2px solid var(--border-color);
+            object-fit: cover;
+        }
+
+        .about-text h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            max-width: 600px;
+        }
+
+        @media (max-width: 768px) {
+            .about-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .about-text h2 {
+                text-align: center;
+            }
+
+            /* Mobile Nav */
+            .nav-brand {
+                display: none; /* Oculta a marca na barra superior para dar espaço */
+            }
+
+            .nav-links {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                justify-content: space-around;
+                background-color: var(--card-bg);
+                padding: 1rem 0.5rem;
+                margin: 0;
+                border-top: 1px solid var(--border-color);
+            }
+        }
+
+        #servicos .card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        #servicos .card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <nav id="main-nav">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">Dr. Yamaha</a>
+            <ul class="nav-links">
+                <!-- <p>Consultoria Profissional e Humanizada</p> -->
+                <li><a href="curso.html">Curso Gratuito</a></li>
+                <li><a href="ebook.html">Dicas</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="#sobre-mim">Sobre</a></li>
+                <li><a href="https://wa.me/5538988340443?text=Ol%C3%A1%20Dr.%20Yamaha!%20Quero%20uma%20consultoria." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">Consultoria Humanizada</a></li>
+            </ul>
+        </div>
+    </nav>
+    <header class="header text-center">
+        <div class="container">
+            <p>
+                Quantas vezes você já levou sua Yamaha ao mecânico, pagou caro e saiu sem entender o que foi feito?
+                Com nosso suporte, você evita erros comuns, economiza dinheiro e cuida da sua moto com segurança.
+                Nossa equipe é consultoria de verdade, com linguagem clara, prática e foco no que realmente importa.
+            </p>
+            <p>
+                Estudo informal com base em mais de 200 relatos online e grupos de motociclistas apontou os principais motivos de insatisfação com oficinas mecânicas. A maioria dos entrevistados destacou falta de transparência,
+                retrabalho constante e atendimentos demorados, reforçando a carência de profissionais qualificados e comprometidos com o cliente.
+                Essa pesquisa tem caráter exploratório e não-acadêmico, baseada em escuta ativa de comunidades reais e dados públicos disponíveis.
+            </p>
+            <p>
+                O objetivo é mostrar a realidade vivida por motociclistas, validando a necessidade de um serviço mais humanizado e especializado — como a consultoria
+                oferecida pelo Dr. Yamaha.
+            </p>
+        </div>
+
+        <!-- Container com largura reduzida -->
+        <div style="width: 70%; margin: 0 auto;">
+        <canvas id="graficoInsatisfacao" height="200"></canvas>
+        </div>
+
+        <!-- Chart.js e plugin para exibir valores no topo -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+
+        <script>
+        const ctx = document.getElementById('graficoInsatisfacao').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+            labels: [
+                'Diagnóstico tardio',
+                'Falta de comunicação',
+                'Retrabalho constante',
+                'Danos causados pela oficina',
+                'Baixa confiança geral'
+            ],
+            datasets: [{
+                label: 'Percentual de relatos negativos (%)',
+                data: [58, 72, 49, 36, 81],
+                backgroundColor: [
+                '#0ea5e9', // azul moderno
+                '#22c55e', // verde limão
+                '#f97316', // laranja
+                '#e11d48', // rosa escuro
+                '#8b5cf6'  // roxo moderno
+                ],
+                borderRadius: 6,
+                borderWidth: 2,
+                
+            }]
+            },
+            options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+                title: {
+                display: true,
+                text: 'Por que motociclistas estão insatisfeitos com oficinas comuns?',
+                color: '#f1f5f9',
+                font: { size: 18 }
+                },
+                datalabels: {
+                color: '#f1f5f9',
+                anchor: 'end',
+                align: 'start',
+                formatter: value => value + '%',
+                font: {
+                    weight: 'bold',
+                    size: 14
+                }
+                }
+            },
+            scales: {
+                y: {
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                    callback: value => value + '%',
+                    color: '#94a3b8'
+                },
+                grid: { color: '#334155' }
+                },
+                x: {
+                ticks: { color: '#94a3b8' },
+                grid: { display: false }
+                }
+            }
+            },
+            plugins: [ChartDataLabels]
+        });
+    </script>
+
+            <p><br>
+                Nossa consultoria é personalizada, humana e 100% voltada para resolver o que realmente importa:
+                evitar prejuízos, aumentar a durabilidade da sua moto e garantir sua segurança nas ruas.
+                Se você tem uma Yamaha, essa é a oportunidade de ter alguém experiente do seu lado, tirando
+                suas dúvidas, identificando sintomas e mostrando o melhor caminho, sem enrolação, sem empurrar serviço.
+            </p>
+
+    </header>
+    
+    <main class="container">
+        <section id="servicos" class="grid-section">
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="margin: 0 auto;">
+                        <path
+                            d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
+                        </path>
+                    </svg>
+                </div>
+                <h3>Consultoria Especializada</h3>
+                <p>Fale direto com um mecânico com 13 anos de experiência em motos Yamaha. Solucione dúvidas, sintomas
+                    ou agende uma consultoria personalizada</p>
+            </div>
+            <div id="curso" class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="margin: 0 auto;">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                </div>
+                <h3>Curso Gratuito</h3>
+                <p>Aprenda manutenção preventiva de forma simples, em slides ilustrados e linguagem direta. Ideal para
+                    donos de Yamaha 150 a 250cc.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="margin: 0 auto;">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                </div>
+                <h3>Ebook Exclusivo</h3>
+                <p>Baixe o PDF '7 Erros que Estão Acabando com sua Moto Yamaha' e evite problemas comuns com dicas
+                    diretas e valiosas.</p>
+            </div>
+        </section>
+
+        <section id="sobre-mim" class="about-section">
+            <div class="about-image">
+                <img src="river.jpg" alt="Foto do Dr. Yamaha em sua oficina" class="profile-image-large" width="250"
+                    height="250" loading="lazy" decoding="async">
+            </div>
+            <div class="about-text">
+                <h2 class="section-title" style="text-align: left;">Quem é o Dr. Yamaha?</h2>
+                <p>Com mais de 13 anos de estrada e uma paixão que começou na adolescência, sou um mecânico especialista
+                    dedicado exclusivamente ao universo Yamaha. Minha missão vai além de apertar parafusos; é sobre
+                    garantir que cada motociclista tenha a confiança e a segurança para rodar tranquilo.</p>
+                <p>Acredito que conhecimento compartilhado fortalece a comunidade. Por isso, criei este espaço para
+                    oferecer não apenas meus serviços de consultoria e manutenção, mas também para empoderar você, dono
+                    de uma Yamaha, com cursos e materiais que desmistificam a mecânica e te ajudam a cuidar melhor da
+                    sua máquina.</p>
+            </div>
+        </section>
+
+        <section class="container" style="padding: 4rem 0;">
+            <p>De o play no vídeo, e descubra um pouco mais</p><br>
+            <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+                <iframe src="https://www.youtube.com/embed/L4sY7NKfkgw?autoplay=1&mute=1"
+                        title="Vídeo do Dr. Yamaha"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        style="position:absolute;top:0;left:0;width:100%;height:80%;">
+                </iframe>
+            </div>
+        </section>
+
+        <section id="ebook" class="form-container">
+            <h2 class="section-title">Receba o E-book por E-mail</h2>
+            <form id="contact-form" action="https://formspree.io/f/moqprzpq" method="POST">
+                <div class="form-group">
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required
+                        class="form-input">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Seu melhor e-mail" required
+                        class="form-input">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="modelo" name="modelo" placeholder="Modelo da sua Yamaha (opcional)"
+                        class="form-input">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Receber PDF</button>
+                <div id="form-status"></div>
+            </form>
+        </section>
+
+        <section id="depoimentos" class="grid-section">
+            <h2 class="section-title" style="grid-column: 1 / -1;">O que dizem os nossos clientes</h2>
+            <div class="testimonial-card">
+                <img src="river.jpg" alt="Foto do Dr. Yamaha" class="profile-image" width="320" height="320" loading="lazy"
+                decoding="async">
+                <p>“Só quem já ficou na mão com mecânico enrolado sabe o tanto que é difícil achar alguém de confiança. Mas o Dr. Yamaha é diferente. Ele explica tudo certinho, não enrola e ainda dá dica que a gente nunca imaginou. Minha moto nunca rodou tão redondinha.”</p>
+                <p>River</p>
+            </div>
+            <div class="testimonial-card">
+                <img src="ofc.jpg" alt="Foto do Dr. Yamaha" class="profile-image" width="320" height="320" loading="lazy"
+                decoding="async">
+                <p>“Sabe aquele tipo de atendimento que parece que a pessoa conhece sua moto melhor que você? Pois é. Atendimento do Dr. Yamaha é coisa fina. Resolveu um problema que outra oficina mexeu três vezes e não achava o defeito. Nota 10!”</p>
+                <p>Rivaldo Ferreira</p>
+            </div>
+            <div class="testimonial-card">
+                <img src="jane3.jpg" alt="Foto do Dr. Yamaha" class="profile-image" width="320" height="320" loading="lazy"
+                decoding="async">
+                <p>“Aqui em Minas a gente valoriza serviço bem feito e palavra firme. E é isso que encontrei com a consultoria do Dr. Yamaha. Ele entende mesmo de Yamaha, fala a real e entrega resultado. Não é só mecânico, é parceiro.”</p>
+                <p>Dexter</p>
+            </div>
+        </section>
+    
+</main>
+
+    <footer class="footer">
+        <p>Dr. Yamaha © <span id="current-year"></span> - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Atualiza o ano no rodapé
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+
+            // Lógica do Cabeçalho Dinâmico
+            const nav = document.getElementById('main-nav');
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            const onScroll = () => {
+                // Adiciona fundo à navegação ao rolar
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+
+                // Destaca o link ativo na navegação
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 150) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(currentSection)) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', onScroll);
+
+            // Lida com a submissão do formulário
+            const form = document.getElementById('contact-form');
+            const statusDiv = document.getElementById('form-status');
+
+            if (form) {
+                form.addEventListener('submit', async function (event) {
+                    event.preventDefault();
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    const formData = new FormData(form);
+
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Enviando...';
+                    statusDiv.style.display = 'none';
+
+                    try {
+                        const response = await fetch(form.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+
+                        if (response.ok) {
+                            statusDiv.textContent = "Obrigado! Seu e-book foi enviado.";
+                            statusDiv.className = 'success';
+                            form.reset();
+                        } else {
+                            const data = await response.json();
+                            if (Object.hasOwn(data, 'errors')) {
+                                statusDiv.textContent = data["errors"].map(error => error["message"]).join(", ");
+                            } else {
+                                statusDiv.textContent = "Oops! Houve um problema ao enviar seu formulário.";
+                            }
+                            statusDiv.className = 'error';
+                        }
+                    } catch (error) {
+                        statusDiv.textContent = "Oops! Houve um problema de rede. Tente novamente.";
+                        statusDiv.className = 'error';
+                    } finally {
+                        statusDiv.style.display = 'block';
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Enviar e Receber PDF';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
