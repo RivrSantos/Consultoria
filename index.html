@@ -511,94 +511,12 @@
     </nav>
     <header class="header text-center">
         <div class="container">
+            <h4>Quantas vezes você já levou sua Yamaha ao mecânico, pagou caro e saiu sem entender o que foi feito?</h4>
             <p>
-                Quantas vezes você já levou sua Yamaha ao mecânico, pagou caro e saiu sem entender o que foi feito?
-                Estudo informal com base em mais de 200 relatos online e grupos de motociclistas apontou os principais
-                motivos de insatisfação com oficinas mecânicas.
-                Essa pesquisa tem caráter exploratório e não-acadêmico, baseada em escuta ativa de comunidades reais e
-                dados públicos disponíveis.
-                O objetivo é mostrar a realidade vivida por motociclistas, validando a necessidade de um serviço mais
-                humanizado e especializado — como a consultoria
-                oferecida pelo Dr. Yamaha.
                 Se você tem uma Yamaha, essa é a oportunidade de ter alguém experiente do seu lado, tirando
-                suas dúvidas, identificando sintomas e mostrando o melhor caminho, sem enrolação, sem empurrar serviço.
+                suas dúvidas, identificando sintomas e mostrando o melhor caminho para cuidar da sua moto.
             </p>
         </div>
-
-        <div class="container" style="max-width: 800px;">
-            <canvas id="graficoInsatisfacao" height="400"></canvas>
-        </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
-
-        <script>
-            const ctx = document.getElementById('graficoInsatisfacao').getContext('2d');
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: [
-                        'Diagnóstico tardio',
-                        'Falta de comunicação',
-                        'Retrabalho constante',
-                        'Danos causados pela oficina',
-                        'Baixa confiança geral'
-                    ],
-                    datasets: [{
-                        label: 'Percentual de relatos negativos (%)',
-                        data: [58, 72, 49, 36, 81],
-                        backgroundColor: [
-                            '#007acc', // Azul escuro
-                            '#0099e6', // Azul médio
-                            '#00b3f0', // Azul claro
-                            '#33ccff', // Ciano claro
-                            '#66d9ff' // Azul celeste
-                        ],
-                        borderRadius: 6,
-                        borderWidth: 2,
-
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: { display: false },
-                        title: {
-                            display: true,
-                            text: 'Por que motociclistas estão insatisfeitos com oficinas comuns?',
-                            color: '#f1f5f9',
-                            font: { size: 18 }
-                        },
-                        datalabels: {
-                            color: '#f1f5f9',
-                            anchor: 'end',
-                            align: 'start',
-                            formatter: value => value + '%',
-                            font: {
-                                weight: 'bold',
-                                size: 14
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: {
-                                callback: value => value + '%',
-                                color: '#94a3b8'
-                            },
-                            grid: { color: '#334155' }
-                        },
-                        x: {
-                            ticks: { color: '#94a3b8' },
-                            grid: { display: false }
-                        }
-                    }
-                },
-                plugins: [ChartDataLabels]
-            });
-        </script>
     </header>
 
     <main class="container">
@@ -655,17 +573,18 @@
                 <h2 class="section-title" style="text-align: left;">Quem é o Dr. Yamaha?</h2>
                 <p>Com mais de 13 anos de estrada e uma paixão que começou na adolescência, sou um mecânico
                     especialista
-                    dedicado exclusivamente ao universo Yamaha. Minha missão vai além de apertar parafusos; é sobre
-                    garantir que cada motociclista tenha a confiança e a segurança para rodar tranquilo.</p>
+                    dedicado exclusivamente ao universo Yamaha.</p>
                 <p>Acredito que conhecimento compartilhado fortalece a comunidade. Por isso, criei este espaço para
-                    oferecer não apenas meus serviços de consultoria e manutenção, mas também para empoderar você, dono
+                    oferecer não apenas meus serviços de consultoria, mas também para empoderar você, dono
                     de uma Yamaha, com cursos e materiais que desmistificam a mecânica e te ajudam a cuidar melhor da
-                    sua máquina.</p>
+                    sua moto.</p>
+                <a href="https://wa.me/5538988340443?text=Ol%C3%A1%20Dr.%20Yamaha!%20Quero%20uma%20consultoria."
+                        target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">Falar no WhatsApp</a>
             </div>
         </section>
 
         <section id="depoimentos" class="grid-section">
-            <h2 class="section-title" style="grid-column: 1 / -1;">O que dizem os nossos clientes</h2>
+            <h2 class="section-title" style="grid-column: 1 / -1;">O que dizem os clientes</h2>
             <div class="testimonial-card">
                 <img src="dayv.jpg" alt="Yamaha" class="profile-image" width="320" height="320"
                     loading="lazy" decoding="async">
