@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Custo de Moto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #0f172a;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fcfdfd;
+            font-size: 1.8em;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: #fafafa;
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: #3498db;
+            color: white;
+            padding: 14px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #ecf0f1;
+            border-radius: 8px;
+        }
+
+        .result h2 {
+            color: #27ae60;
+            margin-bottom: 10px;
+        }
+
+        .result p {
+            margin: 8px 0;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            label {
+                font-size: 0.9em;
+            }
+
+            input, button {
+                font-size: 0.95em;
+            }
+
+            .result p {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Calculadora de Custo de Moto</h1>
+    <div class="container">
+        <label for="consumo">Consumo médio (km/l):</label>
+        <input type="number" id="consumo" step="0.1" placeholder="Ex: 30">
+
+        <label for="distancia">Distância mensal (km):</label>
+        <input type="number" id="distancia" placeholder="Ex: 1000">
+
+        <label for="preco">Preço do combustível (R$/litro):</label>
+        <input type="number" id="preco" step="0.01" placeholder="Ex: 5.50">
+
+        <label for="revisao">Custo médio de revisão anual (R$):</label>
+        <input type="number" id="revisao" placeholder="Ex: 600">
+
+        <label for="imposto">Custo de impostos anuais (R$):</label>
+        <input type="number" id="imposto" placeholder="Ex: 450">
+
+        <label for="anos">Tempo de posse (anos):</label>
+        <input type="number" id="anos" placeholder="Ex: 3">
+
+        <button onclick="calcular()">Calcular Custo Total</button>
+
+        <div class="result" id="resultado" style="display:none;">
+            <h2>Resultado</h2>
+            <p id="combustivel"></p>
+            <p id="revisoes"></p>
+            <p id="impostos"></p>
+            <p id="total"></p>
+        </div>
+    </div>
+
+    <script>
+        function calcular() {
+            const consumo = parseFloat(document.getElementById('consumo').value);
+            const distancia = parseFloat(document.getElementById('distancia').value);
+            const preco = parseFloat(document.getElementById('preco').value);
+            const revisao = parseFloat(document.getElementById('revisao').value);
+            const imposto = parseFloat(document.getElementById('imposto').value);
+            const anos = parseInt(document.getElementById('anos').value);
+
+            if (isNaN(consumo) || isNaN(distancia) || isNaN(preco) || isNaN(revisao) || isNaN(imposto) || isNaN(anos)) {
+                alert("Preencha todos os campos corretamente!");
+                return;
+            }
+
+            const litrosMes = distancia / consumo;
+            const custoCombustivelMes = litrosMes * preco;
+            const custoCombustivelAno = custoCombustivelMes * 12;
+            const totalCombustivel = custoCombustivelAno * anos;
+            const totalRevisao = revisao * anos;
+            const totalImposto = imposto * anos;
+            const total = totalCombustivel + totalRevisao + totalImposto;
+
+            document.getElementById('combustivel').innerText = `Total com combustível: R$ ${totalCombustivel.toFixed(2)}`;
+            document.getElementById('revisoes').innerText = `Total com revisões: R$ ${totalRevisao.toFixed(2)}`;
+            document.getElementById('impostos').innerText = `Total com impostos: R$ ${totalImposto.toFixed(2)}`;
+            document.getElementById('total').innerText = `Custo total estimado: R$ ${total.toFixed(2)}`;
+
+            document.getElementById('resultado').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
